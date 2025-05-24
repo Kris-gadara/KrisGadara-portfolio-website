@@ -24,11 +24,11 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#8a2be2", // Vibrant purple
+          DEFAULT: "#2563eb", // Blue-600
           foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#4b0082", // Indigo
+          DEFAULT: "#4f46e5", // Indigo-600
           foreground: "#ffffff",
         },
         destructive: {
@@ -75,4 +75,3 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 }
-

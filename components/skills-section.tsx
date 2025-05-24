@@ -1,178 +1,135 @@
 "use client"
 
-import { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Canvas } from "@react-three/fiber"
-import { Text, Float, Environment, OrbitControls } from "@react-three/drei"
-import { gsap } from "gsap"
-import type * as THREE from "three" // Import THREE
-
-interface Skill {
-  name: string
-  category: "frontend" | "backend" | "language" | "design" | "database" | "other"
-  level: number // 1-10
-}
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export default function SkillsSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const skills: Skill[] = [
-    // Frontend
-    { name: "HTML", category: "frontend", level: 9 },
-    { name: "CSS", category: "frontend", level: 8 },
-    { name: "JavaScript", category: "frontend", level: 8 },
-    { name: "React", category: "frontend", level: 7 },
-
-    // Backend
-    { name: "Node.js", category: "backend", level: 6 },
-
-    // Languages
-    { name: "C", category: "language", level: 7 },
-    { name: "C++", category: "language", level: 7 },
-    { name: "Java", category: "language", level: 6 },
-    { name: "Python", category: "language", level: 6 },
-
-    // Design
-    { name: "Responsive Design", category: "design", level: 8 },
-    { name: "Data Visualization", category: "design", level: 7 },
-
-    // Database
-    { name: "SQL", category: "database", level: 7 },
-
-    // Other
-    { name: "Flutter", category: "other", level: 6 },
-    { name: "Unity", category: "other", level: 7 },
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      icon: "🎨",
+      color: "from-blue-500 to-cyan-500",
+      skills: [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React.js",
+        "Responsive Design",
+        "Material-UI",
+        "Tailwind CSS",
+        "Bootstrap",
+      ],
+    },
+    {
+      title: "Backend Development",
+      icon: "⚙️",
+      color: "from-indigo-500 to-purple-500",
+      skills: ["Node.js", "Express.js", "PHP", "RESTful APIs", "Socket.io", "Authentication", "JWT", "Middleware"],
+    },
+    {
+      title: "Programming Languages",
+      icon: "💻",
+      color: "from-purple-500 to-pink-500",
+      skills: ["JavaScript", "Python", "Java", "C", "C++", "C#", "TypeScript"],
+    },
+    {
+      title: "Database & Storage",
+      icon: "🗄️",
+      color: "from-green-500 to-teal-500",
+      skills: ["MongoDB", "MySQL", "Firebase", "SQL", "Data Structuring", "Database Design", "NoSQL"],
+    },
+    {
+      title: "Mobile & Game Development",
+      icon: "📱",
+      color: "from-orange-500 to-red-500",
+      skills: ["Flutter", "Unity", "Android Development", "3D Modeling", "Game Physics", "Mobile UI/UX"],
+    },
+    {
+      title: "AI & Machine Learning",
+      icon: "🤖",
+      color: "from-cyan-500 to-blue-500",
+      skills: [
+        "TensorFlow",
+        "Machine Learning",
+        "Data Science",
+        "OpenAI API",
+        "Python ML Libraries",
+        "Neural Networks",
+      ],
+    },
+    {
+      title: "Tools & Technologies",
+      icon: "🛠️",
+      color: "from-gray-500 to-slate-500",
+      skills: ["Git", "GitHub", "VS Code", "Postman", "Firebase", "Vercel", "Docker", "Linux"],
+    },
+    {
+      title: "Soft Skills",
+      icon: "🧠",
+      color: "from-emerald-500 to-green-500",
+      skills: ["Analytical Thinking", "Problem Solving", "Team Collaboration", "Project Management", "Communication"],
+    },
   ]
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "frontend":
-        return "#ff4500"
-      case "backend":
-        return "#4169e1"
-      case "language":
-        return "#9932cc"
-      case "design":
-        return "#32cd32"
-      case "database":
-        return "#ffa500"
-      case "other":
-        return "#1e90ff"
-      default:
-        return "#ffffff"
-    }
-  }
-
-  const SkillsCloud = () => {
-    const groupRef = useRef<THREE.Group>(null)
-
-    useEffect(() => {
-      if (groupRef.current) {
-        gsap.to(groupRef.current.rotation, {
-          y: Math.PI * 2,
-          duration: 40,
-          repeat: -1,
-          ease: "none",
-        })
-      }
-    }, [])
-
-    return (
-      <group ref={groupRef}>
-        {skills.map((skill, index) => {
-          const phi = Math.acos(-1 + (2 * index) / skills.length)
-          const theta = Math.sqrt(skills.length * Math.PI) * phi
-
-          const x = 3 * Math.cos(theta) * Math.sin(phi)
-          const y = 3 * Math.sin(theta) * Math.sin(phi)
-          const z = 3 * Math.cos(phi)
-
-          return (
-            <Float key={skill.name} speed={2} rotationIntensity={0.5} floatIntensity={0.5} position={[x, y, z]}>
-              <Text
-                color={getCategoryColor(skill.category)}
-                fontSize={0.3 + skill.level * 0.03}
-                font="/fonts/Inter_Bold.json"
-                anchorX="center"
-                anchorY="middle"
-              >
-                {skill.name}
-              </Text>
-            </Float>
-          )
-        })}
-      </group>
-    )
-  }
-
   return (
-    <div className="w-full">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="max-w-4xl mx-auto"
-      >
-        <motion.h2
+    <div className="py-20 px-6 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-2"
+          className="text-center mb-16"
         >
-          Skills
-        </motion.h2>
-
-        <motion.div
-          initial={{ opacity: 0, width: 0 }}
-          whileInView={{ opacity: 1, width: "100px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="h-1 bg-primary mb-8"
-        />
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-gray-300 text-lg mb-10"
-        >
-          Here are the technologies and skills I've worked with. Hover over the 3D cloud to explore.
-        </motion.p>
-
-        <motion.div
-          ref={containerRef}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="h-[500px] w-full"
-        >
-          <Canvas>
-            <SkillsCloud />
-            <Environment preset="sunset" />
-            <OrbitControls
-              enableZoom={false}
-              autoRotate={false}
-              enablePan={false}
-              minPolarAngle={Math.PI / 3}
-              maxPolarAngle={Math.PI / 1.5}
-            />
-          </Canvas>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Skills & Technologies
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-8"></div>
+          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+            A comprehensive overview of my technical skills and expertise across various domains of software
+            development.
+          </p>
         </motion.div>
 
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-6 gap-4">
-          {["frontend", "backend", "language", "design", "database", "other"].map((category) => (
-            <div key={category} className="flex items-center">
-              <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: getCategoryColor(category) }} />
-              <span className="text-sm text-gray-300 capitalize">{category}</span>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillCategories.map((category, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white border-gray-200 hover:border-blue-400 transition-all duration-300 h-full shadow-lg hover:shadow-xl group">
+                <CardContent className="p-6">
+                  <div className="text-center mb-6">
+                    <div
+                      className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${category.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <span className="text-2xl">{category.icon}</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                      {category.title}
+                    </h3>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <Badge
+                        key={skillIndex}
+                        className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-200 transition-colors text-xs px-2 py-1"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }
-

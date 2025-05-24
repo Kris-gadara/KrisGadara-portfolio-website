@@ -137,4 +137,3 @@ export default function ProjectModel({ type, isActive }: ProjectModelProps) {
 
   return <group ref={groupRef}>{renderModel()}</group>
 }
-
