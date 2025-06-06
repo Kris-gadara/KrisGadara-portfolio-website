@@ -62,6 +62,24 @@ export default function ProjectsSection() {
       github: "https://github.com/Kris-gadara",
       demo: "#",
     },
+    {
+      title: "Fit Sync",
+      description:
+        "A Flutter-based fitness app developed for a hackathon, featuring workout tracking, health metrics monitoring, and integration with Odoo for seamless data management.",
+      technologies: ["Flutter", "Dart", "Odoo", "Firebase", "REST API"],
+      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=300&fit=crop&crop=center",
+      github: "https://github.com/Kris-gadara/Odoo_x_CHARUSAT-Neural_Nexus",
+      demo: "#",
+    },
+    {
+      title: "Blinkit Waste Management Automation",
+      description:
+        "A web solution for the Blinkit hackathon, automating waste management in dark stores using a MERN stack with React, Next.js, Tailwind CSS, and Bootstrap for a dynamic, responsive frontend, and Node.js, MongoDB, Firebase, and REST API for a scalable, secure backend.",
+      technologies: ["React", "Next.js", "Tailwind CSS", "Bootstrap", "Node.js", "MongoDB", "Firebase", "REST API"],
+      image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=500&h=300&fit=crop&crop=center",
+      github: "https://github.com/Kris-gadara/Sfainova_Hackron",
+      demo: "#",
+    },
   ]
 
   return (
