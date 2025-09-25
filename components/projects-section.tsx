@@ -9,15 +9,6 @@ import { ExternalLink, Github } from "lucide-react"
 export default function ProjectsSection() {
   const projects = [
     {
-      title: "Paper Trading Platform",
-      description:
-        "A comprehensive stock trading simulation platform with real-time market data, portfolio management, and advanced trading analytics for learning investment strategies.",
-      technologies: ["React", "Node.js", "MongoDB", "WebSocket", "Chart.js", "Express"],
-      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&h=300&fit=crop&crop=center",
-      github: "https://github.com/Kris-gadara",
-      demo: "#",
-    },
-    {
       title: "Modern Expense Tracker",
       description:
         "A sleek expense tracking application with budget management, category-wise analysis, financial insights, and detailed reporting for personal finance management.",
